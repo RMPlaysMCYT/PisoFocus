@@ -29,11 +29,21 @@ impl eframe::App for MyApp {
             .show(ctx, |ui| {
                 ui.heading("Welcome to PisoFocus Admin!");
                 ui.label("Main Menu");
-                if ui.button("Dashboard").clicked() {
+                ui.add_space(10.0);
+
+                let btn_size = egui::Vec2::new(120.0, 40.0);
+                if ui.add_sized(btn_size, egui::Button::new("Dashboard")).clicked() {
                     // Handle Dashboard button click
                 }
-                if ui.button("Analytics").clicked() {
+                if ui.add_sized(btn_size, egui::Button::new("Analytics")).clicked() {
                     // Handle Analytics button click
+                }
+                ui.add_space(10.0);
+                if ui.add_sized(btn_size, egui::Button::new("Settings")).clicked() {
+                    // Handle Settings button click
+                }
+                if ui.add_sized(btn_size, egui::Button::new("Quit")).clicked() {
+                    // Handle Logout button click
                 }
             });
 
