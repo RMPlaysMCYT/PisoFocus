@@ -1,3 +1,4 @@
+use crate::pages::{analytics, dashboard, settings};
 use eframe::egui;
 use egui::TextStyle::Button;
 
