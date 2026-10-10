@@ -2,6 +2,7 @@ use crate::pages::{analytics, dashboard, settings};
 use eframe::egui;
 use egui::TextStyle::Button;
 
+#[derive(Default, PartialEq, Clone, Copy, Debug, Eq, Hash, PartialOrd, Ord, Debug)]
 pub enum Page {
     Dashboard,
     Analytics,
@@ -25,28 +26,33 @@ impl eframe::App for PisoFocusAdminApp {
 
                 let btn_size = egui::Vec2::new(120.0, 40.0);
                 if ui
-                    .add_sized(btn_size, egui::SelectableLabel::new(self.current_page == Page::Dashboard, "Dashboard"))
+                    .add_sized(
+                        btn_size,
+                        egui::Button::selectable(self.current_page == Page::Dashboard, "Dashboard"),
+                    )
                     .clicked()
                 {
                     self.current_page = Page::Dashboard;
                 }
                 if ui
-                    .add_sized(btn_size, egui::SelectableLabel::new(self.current_page == Page::Analytics, "Analytics"))
+                    .add_sized(btn_size, egui::Button::selectable(self.current_page == Page::Analytics, "Analytics"))
                     .clicked()
                 {
                     self.current_page = Page::Analytics;
                 }
                 ui.add_space(10.0);
                 if ui
-                    .add_sized(btn_size, egui::SelectableLabel::new(self.current_page == Page::Settings, "Settings"))
+                    .add_sized(btn_size, egui::Button::selectable(self.current_page == Page::Settings, "Settings"))
                     .clicked()
                 {
                     self.current_page = Page::Settings;
                 }
             });
 
-        egui::CentralPanel::default().show(ctx, |ui| {
-            ui.heading("Welcome to PisoFocus Admin!");
+        egui::CentralPanel::default().show(ctx, |ui| match self.current_page {
+            Page::Dashboard => dashboard::show(ui, self),
+            Page::Analytics => analytics::show(ui, self),
+            Page::Settings => settings::show(ui, self), 
         });
     }
 }
