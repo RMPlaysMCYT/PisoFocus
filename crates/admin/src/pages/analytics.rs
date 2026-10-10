@@ -1,2 +1,2 @@
-use crate::app::PisoAdminApp;
+use crate::app::PisoFocusAdminApp;
 use eframe::egui;
