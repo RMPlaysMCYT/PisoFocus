@@ -9,10 +9,8 @@ pub enum Page {
 }
 
 #[derive(Default)]
-struct PisoFocusAdminApp {
-    name: String,
-    age: u32,
-    counter: i32,
+pub struct PisoFocusAdminApp {
+    pub current_page: Page,
 }
 
 impl eframe::App for PisoFocusAdminApp {
@@ -33,15 +31,17 @@ impl eframe::App for PisoFocusAdminApp {
                     self.current_page = Page::Dashboard;
                 }
                 if ui
-                .add_sized(btn_size, egui:: egui::Button::new("Analytics")).clicked() {
+                    .add_sized(btn_size, egui::SelectableLabel::new(self.current_page == Page::Analytics, "Analytics"))
+                    .clicked()
+                {
                     self.current_page = Page::Analytics;
                 }
                 ui.add_space(10.0);
-                if ui.add_sized(btn_size, egui::Button::new("Settings")).clicked() {
+                if ui
+                    .add_sized(btn_size, egui::SelectableLabel::new(self.current_page == Page::Settings, "Settings"))
+                    .clicked()
+                {
                     self.current_page = Page::Settings;
-                }
-                if ui.add_sized(btn_size, egui::Button::new("Quit")).clicked() {
-                    // Handle Logout button click
                 }
             });
 
