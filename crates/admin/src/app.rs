@@ -1,9 +1,9 @@
 use crate::pages::{analytics, dashboard, settings};
 use eframe::egui;
-use egui::TextStyle::Button;
 
-#[derive(Default, PartialEq, Clone, Copy, Debug, Eq, Hash, PartialOrd, Ord, Debug)]
+#[derive(Default, PartialEq, Clone, Copy, Debug, Eq, Hash, PartialOrd, Ord)]
 pub enum Page {
+    #[default]
     Dashboard,
     Analytics,
     Settings,
@@ -12,7 +12,6 @@ pub enum Page {
 #[derive(Default)]
 pub struct PisoFocusAdminApp {
     pub current_page: Page,
-    pub config: crate::AppConfig,
 }
 
 impl eframe::App for PisoFocusAdminApp {
