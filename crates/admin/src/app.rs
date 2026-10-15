@@ -47,6 +47,9 @@ impl eframe::App for PisoFocusAdminApp {
                 {
                     self.current_page = Page::Settings;
                 }
+                if ui.button("Quit").clicked() {
+                    _frame.close();
+                }
             });
 
         egui::CentralPanel::default().show(ctx, |ui| match self.current_page {
