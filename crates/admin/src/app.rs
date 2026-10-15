@@ -47,8 +47,12 @@ impl eframe::App for PisoFocusAdminApp {
                 {
                     self.current_page = Page::Settings;
                 }
-                if ui.button("Quit").clicked() {
-                    _frame.close();
+                ui.add_space(100.0);
+                if ui
+                    .add_sized(btn_size, egui::Button::new("Quit"))
+                    .clicked()
+                {
+                    ctx.send_viewport_cmd(eframe::egui::ViewportCommand::Close);
                 }
             });
 
