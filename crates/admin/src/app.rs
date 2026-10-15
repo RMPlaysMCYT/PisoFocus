@@ -54,6 +54,7 @@ impl eframe::App for PisoFocusAdminApp {
                 {
                     ctx.send_viewport_cmd(eframe::egui::ViewportCommand::Close);
                 }
+                ui.label(format!("Version: {}", env!("CARGO_PKG_VERSION")));
             });
 
         egui::CentralPanel::default().show(ctx, |ui| match self.current_page {
